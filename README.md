@@ -1,0 +1,1 @@
+# fflogs-fight-analyzer
