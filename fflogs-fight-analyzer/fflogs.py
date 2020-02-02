@@ -30,7 +30,7 @@ class Client:
         self.logger.debug("Successfully validated FF Logs API key.")
         self.api_key = api_key
 
-    def _get(self, url, params={}):
+    def _get(self, url, params=None):
         try:
             response = requests.get(url, params)
             response.raise_for_status()
@@ -54,7 +54,9 @@ class Client:
     def _validate_api_key(self, api_key):
         return self._get(FF_LOGS_CLASSES_URL, {"api_key": api_key})
 
-    def get(self, api_endpoint, parameters={}):
+    def get(self, api_endpoint, parameters=None):
         request_url = FF_LOGS_API_URL + api_endpoint
+        if not parameters:
+            parameters = {}
         parameters["api_key"] = self.api_key
         return self._get(request_url, parameters)
