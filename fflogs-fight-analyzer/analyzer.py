@@ -2,11 +2,11 @@
 
 import logging
 import sys
-import client
+import fflogs
 
 
 def main():
-    client.Client()
+    client = fflogs.Client()
 
 
 if __name__ == "__main__":
