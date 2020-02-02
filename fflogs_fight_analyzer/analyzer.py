@@ -2,7 +2,7 @@
 
 import logging
 import sys
-import fflogs
+from fflogs_fight_analyzer import fflogs
 
 
 def main():
