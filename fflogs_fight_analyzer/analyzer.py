@@ -10,6 +10,6 @@ def main():
 
 
 if __name__ == "__main__":
-    logger = logging.getLogger(__name__)
+    LOGGER = logging.getLogger(__name__)
     logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
     sys.exit(main())
