@@ -14,6 +14,11 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         type=str,
         help="FF Logs public API key, which can be found at https://www.fflogs.com/profile",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug level logging, increasing verbosity for all requests",
+    )
     return parser
 
 
@@ -23,5 +28,7 @@ def _main(args: argparse.Namespace):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
-    sys.exit(_main(_create_argument_parser().parse_args()))
+    ARGUMENTS = _create_argument_parser().parse_args()
+    LOGGING_LEVEL = logging.DEBUG if ARGUMENTS.debug else logging.INFO
+    logging.basicConfig(level=LOGGING_LEVEL, format="%(levelname)s: %(message)s")
+    sys.exit(_main(ARGUMENTS))
