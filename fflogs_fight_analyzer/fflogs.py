@@ -7,20 +7,12 @@ Functions and classes for interacting with the FF Logs rest API:
 
 from typing import Optional
 import logging
-import os
 import sys
 import requests
 
 FF_LOGS_BASE_URL = "https://www.fflogs.com/"
 FF_LOGS_API_URL = FF_LOGS_BASE_URL + "v1/"
 FF_LOGS_CLASSES_URL = FF_LOGS_API_URL + "classes"
-
-
-def _get_api_key() -> str:
-    api_key = os.getenv("FF_LOGS_API_KEY")
-    if not api_key:
-        api_key = input("Enter your FF Logs API public key (https://www.fflogs.com/profile): ")
-    return api_key
 
 
 class Client:
@@ -43,7 +35,7 @@ class Client:
         self.logger.debug("Successfully established connection.")
 
         if not api_key:
-            api_key = _get_api_key()
+            api_key = input("Enter your FF Logs API public key (https://www.fflogs.com/profile): ")
 
         self.logger.debug("Validating API key...")
         if not self._validate_api_key(api_key):

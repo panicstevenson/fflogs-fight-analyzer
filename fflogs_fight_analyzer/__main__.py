@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 import sys
 from fflogs_fight_analyzer import fflogs
 
@@ -23,7 +24,9 @@ def _create_argument_parser() -> argparse.ArgumentParser:
 
 
 def _main(args: argparse.Namespace):
-    client = fflogs.Client(args.api_key)
+    # prefer passed in CLI argument over environment variable
+    api_key = args.api_key or os.getenv("FF_LOGS_API_KEY")
+    client = fflogs.Client(api_key)
     client.get("zones")
 
 
